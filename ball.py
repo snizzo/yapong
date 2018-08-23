@@ -4,8 +4,7 @@ from pygame.locals import *
 
 class Ball():
     def __init__(self, x, y):
-        #self.circle = pygame.circle.Circle((x, y, 15))
-        pass
+        self.circle = pygame.draw.circle(windowSurface, colors.WHITE, (x, y), 10)
         
     def draw(self, surface):
         #pygame.draw.circle(windowSurface, colors.WHITE, self.circle)
