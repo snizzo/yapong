@@ -59,8 +59,14 @@ class Game():
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
-            self.bar1.handle_keys()
-            self.bar2.handle_keys()
+            #draw game objects
+            self.bar1.erase()
+            self.bar2.erase()
+            self.bar1.handle_keys(pygame.K_q, pygame.K_a)
+            self.bar2.handle_keys(pygame.K_o, pygame.K_l)
+            self.bar1.draw()
+            self.bar2.draw()
+            pygame.display.update()
 
 g = Game()
 g.runGameLoop()
