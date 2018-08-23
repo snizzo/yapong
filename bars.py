@@ -5,6 +5,6 @@ class Bar():
         self.x = x
         self.y = y
         
-    def draw_bar:
+    def draw(self, x, y):
         pygame.draw.rect(windowSurface, WHITE, [x, y, 20, 100])
     

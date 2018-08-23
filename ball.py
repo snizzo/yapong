@@ -5,6 +5,6 @@ class Ball():
         self.x = x
         self.y = y
         
-    def draw_bar:
+    def draw(self, x, y):
         pygame.draw.circle(windowSurface, WHITE, [x, y], 15)
     
