@@ -1,4 +1,6 @@
-## here goes the code that renders and handles the bars
+#sys imports
+import pygame, sys
+from pygame.locals import *
 
 class Bar():
     def __init__(self, x, y):
