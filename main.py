@@ -47,9 +47,9 @@ class Game():
         windowSurface.blit(text, textRect)
         
         #example of ball and bar class
-        self.bar1 = Bar(0,0)
-        self.bar2 = Bar(100,100)
-        self.ball = Ball(300,300)
+        self.bar1 = Bar(100, 334)
+        self.bar2 = Bar(1256, 334)
+        self.ball = Ball(683, 384)
 
     
     def runGameLoop(self):
