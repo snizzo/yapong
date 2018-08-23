@@ -8,6 +8,6 @@ class Ball():
         pass
         
     def draw(self, surface):
-        #pygame.draw.circle(windowSurface, WHITE, self.circle)
+        #pygame.draw.circle(windowSurface, colors.WHITE, self.circle)
         pass
     

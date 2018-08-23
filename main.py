@@ -1,10 +1,12 @@
 #sys imports
 import pygame, sys
+import __builtin__
 from pygame.locals import *
 
 #custom imports
 from ball import Ball
 from bars import Bar
+from colors import Colors
 
 class Game():
     def __init__(self):
@@ -19,32 +21,27 @@ class Game():
         pygame.init()
 
         # set up the window
-        global windowSurface
-        windowSurface = pygame.display.set_mode((1366, 768), 0, 32)
-        pygame.display.set_caption('Yet another PONG')
+        __builtin__.windowSurface = pygame.display.set_mode((1366, 768), 0, 32)
+        pygame.display.set_caption('Yet another PONG')        
 
-        # set up the colors
-        BLACK = (0, 0, 0)
-        WHITE = (255, 255, 255)
-        RED = (255, 0, 0)
-        GREEN = (0, 255, 0)
-        BLUE = (0, 0, 255)
+        # load colors
+        __builtin__.colors = Colors()
 
         # set up fonts
         basicFont = pygame.font.SysFont(None, 48)
 
         # set up the text
-        text = basicFont.render('Yet another PONG!', False, WHITE, BLACK)
+        text = basicFont.render('Yet another PONG!', False, colors.WHITE, colors.BLACK)
         textRect = text.get_rect()
         textRect.centerx = windowSurface.get_rect().centerx
         textRect.y = 12
         #textRect.centery = windowSurface.get_rect().centery
 
         # draw the white background onto the surface
-        windowSurface.fill(BLACK)
+        windowSurface.fill(colors.BLACK)
 
         # draw the text's background rectangle onto the surface
-        pygame.draw.rect(windowSurface, WHITE, (textRect.left - 3, textRect.top - 3, textRect.width + 6, textRect.height + 6))
+        pygame.draw.rect(windowSurface, colors.WHITE, (textRect.left - 3, textRect.top - 3, textRect.width + 6, textRect.height + 6))
 
         # draw the text onto the surface
         windowSurface.blit(text, textRect)

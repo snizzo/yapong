@@ -5,6 +5,7 @@ from pygame.locals import *
 class Bar():
     def __init__(self, x, y):
         self.rect = pygame.rect.Rect((x, y, 20, 100))
+        self.draw(windowSurface)
         
     def handle_keys(self):
         key = pygame.key.get_pressed()
@@ -19,5 +20,5 @@ class Bar():
            self.rect.move_ip(0, 1)
         
     def draw(self, surface):
-        pygame.draw.rect(windowSurface, WHITE, self.rect)
+        pygame.draw.rect(windowSurface, colors.WHITE, self.rect)
     
