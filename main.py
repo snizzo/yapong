@@ -26,6 +26,10 @@ class Game():
 
         # load colors
         __builtin__.colors = Colors()
+        __builtin__.mygame = self
+        
+        self.player1 = 0
+        self.player2 = 0
 
         # set up fonts
         basicFont = pygame.font.SysFont(None, 48)
@@ -39,7 +43,10 @@ class Game():
 
         # draw the white background onto the surface
         windowSurface.fill(colors.BLACK)
-
+        
+        # upper bound
+        pygame.draw.line(windowSurface, colors.WHITE, (0, 93), (1366, 93), 5)
+        
         # draw the text's background rectangle onto the surface
         pygame.draw.rect(windowSurface, colors.WHITE, (textRect.left - 3, textRect.top - 3, textRect.width + 6, textRect.height + 6))
 
@@ -47,26 +54,41 @@ class Game():
         windowSurface.blit(text, textRect)
         
         #example of ball and bar class
-        self.bar1 = Bar(100, 334)
-        self.bar2 = Bar(1256, 334)
+        self.bar1 = Bar(100, 334, 10)
+        self.bar2 = Bar(1256, 334, 10)
         self.ball = Ball(683, 384)
 
+    def updateScore(self):
+        pygame.display.set_caption(str(self.player1) + ' - Yet another PONG - '+ str(self.player2))
     
     def runGameLoop(self):
+        clock=pygame.time.Clock()
         # run the game loop
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
-            #draw game objects
+            #erasing game objects
             self.bar1.erase()
             self.bar2.erase()
+            self.ball.erase()
+            
+            #running game logic
             self.bar1.handle_keys(pygame.K_q, pygame.K_a)
             self.bar2.handle_keys(pygame.K_o, pygame.K_l)
+            self.ball.move(self.bar1, self.bar2)
+            
+            #redrawing
+            self.ball.draw()
             self.bar1.draw()
             self.bar2.draw()
+            # upper bound
+            pygame.draw.line(windowSurface, colors.WHITE, (0, 93), (1366, 93), 5)
+            
+            #updating display
             pygame.display.update()
+            clock.tick(60)
 
 g = Game()
 g.runGameLoop()
