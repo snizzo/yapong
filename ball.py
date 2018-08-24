@@ -1,5 +1,5 @@
 #sys imports
-import pygame, sys, math
+import pygame, sys, math, random
 from pygame.locals import *
 
 class Ball(object):
@@ -14,12 +14,12 @@ class Ball(object):
         self.sin = 0.5
         self.rect = pygame.rect.Rect((x, y, 20, 20))
     
-    def reset(self):
+    def reset(self, sin, cos):
         self.speed = 4
         
         #starting direction
-        self.cos = 1
-        self.sin = 0.5
+        self.cos = cos
+        self.sin = sin
         self.rect.x = self.x
         self.rect.y = self.y
     
@@ -48,11 +48,13 @@ class Ball(object):
             self.cos = -self.cos
             self.increaseSpeed()
         if self.rect.x < 0: #sinistra
-            self.reset()
+            r = random.uniform(0,1)
+            self.reset(1, r)
             mygame.player2 += 1
             mygame.updateScore()
         if self.rect.x > 1346: #destra
-            self.reset()
+            r = random.uniform(0,1)
+            self.reset(-1, r)
             mygame.player1 += 1
             mygame.updateScore()
     
