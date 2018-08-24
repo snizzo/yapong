@@ -7,6 +7,7 @@ from pygame.locals import *
 from ball import Ball
 from bars import Bar
 from colors import Colors
+from sound import Sound
 
 class Game():
     def __init__(self):
@@ -27,6 +28,7 @@ class Game():
         # load colors
         __builtin__.colors = Colors()
         __builtin__.mygame = self
+        __builtin__.sounds = Sound()
         
         self.player1 = 0
         self.player2 = 0

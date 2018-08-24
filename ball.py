@@ -51,10 +51,12 @@ class Ball(object):
             self.reset()
             mygame.player2 += 1
             mygame.updateScore()
+            sounds.playRandomWinSound()
         if self.rect.x > 1346: #destra
             self.reset()
             mygame.player1 += 1
             mygame.updateScore()
+            sounds.playRandomWinSound()
     
     def increaseSpeed(self):
         if self.speed < 9:
