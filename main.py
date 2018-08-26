@@ -22,8 +22,8 @@ class Game():
         pygame.init()
 
         # set up the window
-        width = 1366
-        height = 768
+        width = 1920
+        height = 1080
         __builtin__.windowSurface = pygame.display.set_mode((width, height), 0, 32)
         pygame.display.set_caption('Yet another PONG')        
 
@@ -55,8 +55,9 @@ class Game():
         windowSurface.blit(text, textRect)
         
         #example of ball and bar class
-        self.bar1 = Bar(width/13, height/2, 10)
-        self.bar2 = Bar(width*803/884, height/2, 10)
+        speed = 10
+        self.bar1 = Bar(width/13, height/2, (speed*height)/768)
+        self.bar2 = Bar(width*803/884, height/2, (speed*height)/768)
         self.ball = Ball(width*67/136, height*37/76)
 
     def updateScore(self):
