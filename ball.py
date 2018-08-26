@@ -12,9 +12,11 @@ class Ball(object):
         #starting direction
         self.cos = 1
         self.sin = 0.5
-        self.rect = pygame.rect.Rect((x, y, 20, 20))
+        w, h = pygame.display.get_surface().get_size()
+        self.rect = pygame.rect.Rect((x, y, w/68, w/68))
     
     def reset(self, sin, cos):
+        
         self.speed = 4
         
         #starting direction
@@ -41,24 +43,26 @@ class Ball(object):
             self.cos = offset/50.0
         
         #window borders
-        if self.rect.y > 748: #basso
+        w, h = pygame.display.get_surface().get_size()
+        
+        if self.rect.y > h-(w/68)-5: #basso
             self.cos = -self.cos
             self.increaseSpeed()
-        if self.rect.y < 100: #alto
+        if self.rect.y < (h/15)+10: #alto
             self.cos = -self.cos
             self.increaseSpeed()
         if self.rect.x < 0: #sinistra
             r = random.uniform(0,1)
-            self.reset(1, r)
             mygame.player2 += 1
             mygame.updateScore()
             sounds.playRandomWinSound()
-        if self.rect.x > 1346: #destra
+            self.reset(1, r)
+        if self.rect.x > w: #destra
             r = random.uniform(0,1)
-            self.reset(-1, r)
             mygame.player1 += 1
             mygame.updateScore()
             sounds.playRandomWinSound()
+            self.reset(-1, r)
     
     def increaseSpeed(self):
         if self.speed < 9:

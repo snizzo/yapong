@@ -22,7 +22,9 @@ class Game():
         pygame.init()
 
         # set up the window
-        __builtin__.windowSurface = pygame.display.set_mode((1366, 768), 0, 32)
+        width = 1366
+        height = 768
+        __builtin__.windowSurface = pygame.display.set_mode((width, height), 0, 32)
         pygame.display.set_caption('Yet another PONG')        
 
         # load colors
@@ -34,7 +36,7 @@ class Game():
         self.player2 = 0
 
         # set up fonts
-        basicFont = pygame.font.SysFont(None, 48)
+        basicFont = pygame.font.SysFont(None, height/16)
 
         # set up the text
         text = basicFont.render('Yet another PONG!', False, colors.WHITE, colors.BLACK)
@@ -46,9 +48,6 @@ class Game():
         # draw the white background onto the surface
         windowSurface.fill(colors.BLACK)
         
-        # upper bound
-        pygame.draw.line(windowSurface, colors.WHITE, (0, 93), (1366, 93), 5)
-        
         # draw the text's background rectangle onto the surface
         pygame.draw.rect(windowSurface, colors.WHITE, (textRect.left - 3, textRect.top - 3, textRect.width + 6, textRect.height + 6))
 
@@ -56,9 +55,9 @@ class Game():
         windowSurface.blit(text, textRect)
         
         #example of ball and bar class
-        self.bar1 = Bar(100, 334, 10)
-        self.bar2 = Bar(1256, 334, 10)
-        self.ball = Ball(683, 384)
+        self.bar1 = Bar(width/13, height/2, 10)
+        self.bar2 = Bar(width*803/884, height/2, 10)
+        self.ball = Ball(width*67/136, height*37/76)
 
     def updateScore(self):
         pygame.display.set_caption(str(self.player1) + ' - Yet another PONG - '+ str(self.player2))
@@ -86,7 +85,8 @@ class Game():
             self.bar1.draw()
             self.bar2.draw()
             # upper bound
-            pygame.draw.line(windowSurface, colors.WHITE, (0, 93), (1366, 93), 5)
+            w, h = pygame.display.get_surface().get_size() # get display width and height 
+            pygame.draw.line(windowSurface, colors.WHITE, (0, h/15), (w, h/15), 5)
             
             #updating display
             pygame.display.update()
